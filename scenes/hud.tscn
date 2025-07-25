@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://hevobpmwvlcn"]
+
+[ext_resource type="FontFile" uid="uid://dgmpbwdp2iqvu" path="res://Assets/VCR_OSD_MONO_1.001.ttf" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://bq0c6x5vhjuoc" path="res://Assets/tetrominoes.png" id="2_oo0fn"]
+[ext_resource type="Script" uid="uid://bhr17g0cnsqsa" path="res://scripts/start_button.gd" id="3_5ysmq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_047uy"]
+
+[sub_resource type="Theme" id="Theme_5pdws"]
+Panel/styles/panel = SubResource("StyleBoxTexture_047uy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.423651, 0.423651, 0.423651, 1)
+
+[sub_resource type="Theme" id="Theme_5ysmq"]
+default_font = ExtResource("1_ahhtf")
+default_font_size = 30
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ysmq"]
+texture = ExtResource("2_oo0fn")
+region_rect = Rect2(160, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
+texture = ExtResource("2_oo0fn")
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oo0fn"]
+texture = ExtResource("2_oo0fn")
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uo2fv"]
+texture = ExtResource("2_oo0fn")
+texture_margin_top = 1.0
+region_rect = Rect2(192, -1, 32, 33)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_right = 0.416
+anchor_bottom = 0.13
+offset_left = 425.0
+offset_top = 150.0
+offset_right = 354.6
+offset_bottom = 254.48
+theme = SubResource("Theme_5pdws")
+theme_override_styles/panel = SubResource("StyleBoxFlat_oo0fn")
+
+[node name="scoreLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 448.0
+offset_top = 384.0
+offset_right = 597.0
+offset_bottom = 411.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 30
+text = "Score:0"
+
+[node name="gameOverLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 61.0
+offset_top = 302.0
+offset_right = 324.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+
+[node name="startButton" type="Button" parent="."]
+texture_filter = 1
+offset_left = 112.0
+offset_top = 470.0
+offset_right = 278.0
+offset_bottom = 531.0
+theme = SubResource("Theme_5ysmq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5ysmq")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_6fi6k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oo0fn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uo2fv")
+text = "New Game"
+script = ExtResource("3_5ysmq")
+
+[connection signal="pressed" from="startButton" to="startButton" method="_on_pressed"]
